@@ -2,14 +2,18 @@ package com.example.property_management.controllers;
 
 
 import com.example.property_management.Services.AuthService;
+import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
 import com.example.property_management.entity.dto.LoginRequestDto;
 import com.example.property_management.entity.dto.RefreshRequestDto;
+import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final UserRepository userRepository;
+    private final PropertyRepository propertyRepository;
     private final AuthService authService;
 
     @PostMapping("/register")
@@ -36,6 +41,11 @@ public class AuthController {
     public ResponseEntity<?> refresh(@RequestBody RefreshRequestDto refreshRequest){
         String oldToken = refreshRequest.getRefreshToken();
         return ResponseEntity.ok(authService.refresh(oldToken));
+    }
+
+    @GetMapping("/properties")
+    public List<Property> getAllProperty(){
+        return propertyRepository.findAll();
     }
 
 }
