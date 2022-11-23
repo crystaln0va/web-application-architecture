@@ -22,12 +22,10 @@ public class AuthService {
 
     public LoginResponseDto login(LoginRequestDto loginRequest){
 
-        var result = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword());
-
 
         String accessToken = jwtUtils.generateToken(loginRequest.getEmail());
         String refreshToken = jwtUtils.generateRefreshToken(loginRequest.getEmail());
-        authenticationManager.authenticate(result);
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
         return new LoginResponseDto(accessToken,refreshToken);
 
     }
