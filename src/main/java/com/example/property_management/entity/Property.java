@@ -38,7 +38,7 @@ public class Property {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "key_user")
     private User user;
 }
