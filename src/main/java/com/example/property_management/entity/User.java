@@ -22,6 +22,10 @@ public class User {
     private String password;
     private boolean isactive;
 
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_address")
+    private Address address;
+
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Property> mylist;
 
