@@ -32,7 +32,7 @@ public class PropertyController {
     }
 
     @PostMapping("/{user_id}")
-    public Property addProperty(@RequestBody Property prop,@PathVariable long user_id){
+    public List<Property> addProperty(@RequestBody Property prop,@PathVariable long user_id){
         return propertyService.addProperty(prop,user_id);
     }
 }

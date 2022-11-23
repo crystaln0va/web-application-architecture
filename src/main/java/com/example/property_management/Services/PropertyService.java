@@ -22,11 +22,11 @@ public class PropertyService {
     }
 
 
-    public Property addProperty(Property prop,Long user_id){
+    public List<Property> addProperty(Property prop,Long user_id){
         User user = userService.getUserById(user_id);
         user.getProperties().add(prop);
         userRepository.save(user);
-        return prop;
+        return user.getProperties();
     }
 
     public Property getPropertyById(Long id){
