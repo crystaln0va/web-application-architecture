@@ -34,5 +34,6 @@ public class User {
     private Role role;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+    @JoinColumn
     private List<Property> properties;
 }
