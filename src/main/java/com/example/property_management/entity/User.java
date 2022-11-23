@@ -33,6 +33,6 @@ public class User {
     @JoinColumn(name="user_role")
     private Role role;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     private List<Property> properties;
 }

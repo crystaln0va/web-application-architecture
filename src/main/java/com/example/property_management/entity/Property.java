@@ -39,6 +39,5 @@ public class Property {
     private List<Review> reviews;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "key_user")
     private User user;
 }
