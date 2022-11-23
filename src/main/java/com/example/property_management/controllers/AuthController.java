@@ -22,7 +22,7 @@ import java.util.List;
 public class AuthController {
 
     private final UserRepository userRepository;
-    private final PropertyRepository propertyRepository;
+
     private final AuthService authService;
 
     @PostMapping("/register")
@@ -43,9 +43,6 @@ public class AuthController {
         return ResponseEntity.ok(authService.refresh(oldToken));
     }
 
-    @GetMapping("/properties")
-    public List<Property> getAllProperty(){
-        return propertyRepository.findAll();
-    }
+
 
 }
