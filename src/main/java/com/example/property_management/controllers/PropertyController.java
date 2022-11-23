@@ -31,8 +31,8 @@ public class PropertyController {
         return propertyService.getPropertyById(id);
     }
 
-    @PostMapping
-    public Property addProperty(@RequestBody Property prop){
-        return propertyService.addProperty(prop);
+    @PostMapping("/{user_id")
+    public Property addProperty(@RequestBody Property prop,@PathVariable long user_id){
+        return propertyService.addProperty(prop,user_id);
     }
 }
