@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
 
@@ -28,8 +28,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/get-user-info/:{username}")
-    public User getByUsername(@PathVariable String username){
-        return userService.getUserByUsername(username);
+    @GetMapping("/get-user-info")
+    public User getByUsername(@RequestParam String email){
+        return userService.getUserByUsername(email);
     }
 }
