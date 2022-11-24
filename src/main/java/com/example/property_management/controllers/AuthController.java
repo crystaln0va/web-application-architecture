@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/authenticate")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class AuthController {
 
     private final UserRepository userRepository;

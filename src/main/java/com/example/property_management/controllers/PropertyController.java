@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/properties")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class PropertyController {
 
     private final PropertyService propertyService;
