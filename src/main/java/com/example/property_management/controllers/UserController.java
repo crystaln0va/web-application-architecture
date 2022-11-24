@@ -17,6 +17,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUser();
