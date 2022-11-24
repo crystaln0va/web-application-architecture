@@ -42,6 +42,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
+                .cors(cors -> cors.disable())
                 .authorizeRequests()
                 .antMatchers("/api/v1/authenticate/**").permitAll()
                 .antMatchers("/api/v1/properties").permitAll()
