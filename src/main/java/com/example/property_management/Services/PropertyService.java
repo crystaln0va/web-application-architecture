@@ -25,6 +25,7 @@ public class PropertyService {
     public List<Property> addProperty(Property prop,Long user_id){
         User user = userService.getUserById(user_id);
         user.getProperties().add(prop);
+        prop.setUser_id(user_id);
         userRepository.save(user);
         return user.getProperties();
     }

@@ -19,25 +19,24 @@ public class Property {
     private HomeType htype;
     private String title;
     private String description;
-    private boolean islisted;
-    private Status status;
+    private boolean islisted=true;
+    private Status status=Status.ACTIVE;
+    private String image;
 
     private int bedrooms;
     private int bathrooms;
     private boolean ispetfriendly;
-    private int views;
+    private int views=0;
     private double price;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "prop_address")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<ImageModel> images;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+
+    private Long user_id;
 }

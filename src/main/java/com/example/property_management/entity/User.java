@@ -20,7 +20,7 @@ public class User {
     private String lname;
     private String email;
     private String password;
-    private boolean isactive;
+    private boolean isactive=true;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_address")
@@ -33,6 +33,7 @@ public class User {
     @JoinColumn(name="user_role")
     private Role role;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn
     private List<Property> properties;
 }
