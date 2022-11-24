@@ -28,6 +28,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
     @GetMapping("/get-user-info/:{username}")
     public User getByUsername(@PathVariable String username){
         return userService.getUserByUsername(username);
