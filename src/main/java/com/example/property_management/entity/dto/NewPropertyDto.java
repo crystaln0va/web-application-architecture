@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 public class NewPropertyDto {
 
-    private MultipartFile file;
+    private String type;
+    private String name;
+    private String image;
     private Property property;
 }

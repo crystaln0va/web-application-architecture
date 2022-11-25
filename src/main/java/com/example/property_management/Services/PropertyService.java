@@ -7,12 +7,12 @@ import com.example.property_management.repository.ImageModelRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -29,17 +29,14 @@ public class PropertyService {
     }
 
 
-    public List<Property> addProperty(MultipartFile img,Property prop, Long user_id) throws IOException {
+    public List<Property> addProperty(ImageModel img, Property prop,Long user_id) throws IOException {
 
-        ImageModel myImage = ImageModel.builder()
-                .name(img.getOriginalFilename())
-                .type(img.getContentType())
-                .picByte(ImageUtils.compressImage(img.getBytes())).build();
-        imageModelRepository.save(myImage);
-        prop.getImage().add(myImage);
+        ImageModel savedImage = imageModelRepository.save(img);
+        prop.getImage().add(savedImage);
         User user = userService.getUserById(user_id);
-        user.getProperties().add(prop);
         prop.setUser_id(user_id);
+        Property myProp = propertyRepository.save(prop);
+        user.getProperties().add(myProp);
         userRepository.save(user);
         return user.getProperties();
     }
