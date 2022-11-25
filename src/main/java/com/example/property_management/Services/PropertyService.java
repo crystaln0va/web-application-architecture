@@ -8,6 +8,7 @@ import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,5 +44,14 @@ public class PropertyService {
 
     public Property getPropertyById(Long id){
         return propertyRepository.findById(id).get();
+    }
+
+    public String deleteProperty(Long id){
+        try{
+            propertyRepository.deleteById(id);
+        }catch (Exception e){
+            return e.getMessage();
+        }
+        return "success";
     }
 }

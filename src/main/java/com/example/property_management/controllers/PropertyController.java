@@ -9,6 +9,7 @@ import com.example.property_management.repository.PropertyRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,4 +53,11 @@ public class PropertyController {
 
         return propertyService.addProperty(myImg,prop,user_id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteProperty(@PathVariable long id){
+        propertyService.deleteProperty(id);
+        return ResponseEntity.ok(true);
+    }
+
 }
