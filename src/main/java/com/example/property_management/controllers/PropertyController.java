@@ -2,12 +2,15 @@ package com.example.property_management.controllers;
 
 import com.example.property_management.Services.PropertyService;
 import com.example.property_management.entity.Property;
+import com.example.property_management.entity.dto.NewPropertyDto;
 import com.example.property_management.entity.dto.PropertyListDto;
 import com.example.property_management.repository.PropertyRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +36,9 @@ public class PropertyController {
     }
 
     @PostMapping("/{user_id}")
-    public List<Property> addProperty(@RequestBody Property prop,@PathVariable long user_id){
-        return propertyService.addProperty(prop,user_id);
+    public List<Property> addProperty(@RequestBody NewPropertyDto newProp, @PathVariable long user_id) throws IOException {
+        Property prop = newProp.getProperty();
+        MultipartFile image= newProp.getFile();
+        return propertyService.addProperty(image,prop,user_id);
     }
 }

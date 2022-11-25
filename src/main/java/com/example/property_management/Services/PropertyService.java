@@ -6,7 +6,11 @@ import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -22,7 +26,9 @@ public class PropertyService {
     }
 
 
-    public List<Property> addProperty(Property prop,Long user_id){
+    public List<Property> addProperty(MultipartFile img,Property prop, Long user_id) throws IOException {
+
+        prop.setImage(Base64.getEncoder().encodeToString(img.getBytes()));
         User user = userService.getUserById(user_id);
         user.getProperties().add(prop);
         prop.setUser_id(user_id);
