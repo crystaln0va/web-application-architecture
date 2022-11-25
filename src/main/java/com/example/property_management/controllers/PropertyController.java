@@ -70,4 +70,13 @@ public class PropertyController {
 
         return ResponseEntity.ok(propertyService.changeListed(id));
     }
+
+
+    @GetMapping("/filter")
+    public List<Property> getFilteredProperties(@RequestParam String purpose,
+                                                @RequestParam int rooms,
+                                                @RequestParam double price,
+                                                @RequestParam String state){
+        return propertyService.getfileredProperties(purpose,rooms,price,state);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.property_management.Services;
 
 import com.example.property_management.entity.ImageModel;
+import com.example.property_management.entity.PropType;
 import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
 import com.example.property_management.repository.ImageModelRepository;
@@ -9,6 +10,7 @@ import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,6 +69,17 @@ public class PropertyService {
         myProp.setIslisted(!listStat);
         propertyRepository.save(myProp);
         return myProp;
+    }
+
+    public List<Property> getfileredProperties(String propType , int bedroom , double price,String state){
+
+            return propertyRepository.findAll().stream()
+                    .filter(p->p.getPtype().equals(propType))
+                    .filter(p->p.getBedrooms()>bedroom)
+                    .filter(p->p.getPrice()<price)
+                    .filter(p->p.getAddress().getState().equals(state))
+                    .collect(Collectors.toList());
+
     }
 
 }
