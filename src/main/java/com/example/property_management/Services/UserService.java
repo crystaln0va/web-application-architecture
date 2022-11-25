@@ -46,7 +46,7 @@ public class UserService {
     }
 
     public List<User> getUserByRole(String role){
-        return userRepository.findUsersByRoleIsContaining(role);
+        return userRepository.findUsersByRoleContaining(role);
     }
 
 
