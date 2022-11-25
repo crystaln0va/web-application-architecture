@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/products/offer")
+@RequestMapping("/properties/offer")
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class OfferController {
 
