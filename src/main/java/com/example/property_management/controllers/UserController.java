@@ -1,6 +1,7 @@
 package com.example.property_management.controllers;
 
 import com.example.property_management.Services.UserService;
+import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,10 @@ public class UserController {
     @GetMapping("/get-user-info")
     public User getByUsername(@RequestParam String email){
         return userService.getUserByUsername(email);
+    }
+
+    @PutMapping("/favorite/{prop_id}/{user_id}")
+    public List<Property> addFavoriteList(@PathVariable Long prop_id,@PathVariable Long user_id){
+        return userService.addPropertyToFavorite(prop_id,user_id);
     }
 }

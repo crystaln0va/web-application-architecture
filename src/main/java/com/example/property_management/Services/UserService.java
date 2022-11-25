@@ -1,7 +1,9 @@
 package com.example.property_management.Services;
 
 
+import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
+import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final PropertyRepository propertyRepository;
+
     public User getUserById(long id){
         return userRepository.findById(id).get();
     }
@@ -24,6 +28,14 @@ public class UserService {
 
     public User getUserByUsername(String email){
         return userRepository.findUserByEmail(email);
+    }
+
+    public List<Property> addPropertyToFavorite(Long prop_id,Long user_id){
+        Property myProp = propertyRepository.findById(prop_id).get();
+        User myUser = userRepository.findById(user_id).get();
+        myUser.getMylist().add(myProp);
+        userRepository.save(myUser);
+        return myUser.getMylist();
     }
 
 }
