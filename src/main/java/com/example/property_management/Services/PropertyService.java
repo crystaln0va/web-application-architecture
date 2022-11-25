@@ -71,15 +71,15 @@ public class PropertyService {
         return myProp;
     }
 
-    public List<Property> getfileredProperties(String propType ){
+    public List<Property> getfileredProperties(String propType, int bedroom , double price,String state ){
 
-        //, int bedroom , double price,String state
+
             return propertyRepository.findAll().stream()
 
                     .filter(p->p.getPtype().name().equals(propType))
-//                    .filter(p->p.getBedrooms()>bedroom)
-//                    .filter(p->p.getPrice()<price)
-//                    .filter(p->p.getAddress().getState().equals(state))
+                    .filter(p->p.getBedrooms()>bedroom)
+                    .filter(p->p.getPrice()<price)
+                    .filter(p->p.getAddress().getState().equals(state))
                     .collect(Collectors.toList());
 
     }
