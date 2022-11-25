@@ -16,10 +16,11 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String title;
+    private double price;
     private String description;
     private long stars;
     private long user_id;
+
 
     @ManyToOne
     @JoinColumn(name="key_property")
