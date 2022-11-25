@@ -38,4 +38,9 @@ public class UserController {
     public List<Property> addFavoriteList(@PathVariable Long prop_id,@PathVariable Long user_id){
         return userService.addPropertyToFavorite(prop_id,user_id);
     }
+
+    @GetMapping("/favorite/{user_id}")
+    public List<Property> getFavorite(@PathVariable Long user_id){
+        return userService.getAllfavorite(user_id);
+    }
 }

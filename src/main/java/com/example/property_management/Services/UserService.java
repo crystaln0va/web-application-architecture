@@ -38,4 +38,8 @@ public class UserService {
         return myUser.getMylist();
     }
 
+    public List<Property> getAllfavorite(Long user_id){
+        return userRepository.findById(user_id).get().getMylist();
+    }
+
 }
