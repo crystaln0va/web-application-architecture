@@ -46,9 +46,9 @@ public class UserService {
         return userRepository.findById(user_id).get().getMylist();
     }
 
-    public List<User> getUserByRole(String role){
+    public List<User> getOwner(){
         return userRepository.findAll().stream()
-                .filter(user -> user.getRole().getName()==role)
+                .filter(user -> user.getRole().getName()=="OWNER")
                 .collect(Collectors.toList());
 
     }
