@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +26,9 @@ public class PropertyService {
     private final UserRepository userRepository;
     private final ImageModelRepository imageModelRepository;
 
+    // find all isListed properties
     public List<Property> getAllProperty(){
-        return propertyRepository.findAll();
+        return propertyRepository.findAll().stream().filter(p->p.isIslisted()==true).collect(Collectors.toList());
     }
 
 
@@ -54,4 +56,13 @@ public class PropertyService {
         }
         return "success";
     }
+
+    public Property changeListed(Long id){
+        Property myProp = propertyRepository.findById(id).get();
+        boolean listStat = myProp.isIslisted();
+        myProp.setIslisted(!listStat);
+        propertyRepository.save(myProp);
+        return myProp;
+    }
+
 }

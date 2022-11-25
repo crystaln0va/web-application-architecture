@@ -60,4 +60,9 @@ public class PropertyController {
         return ResponseEntity.ok(true);
     }
 
+    @PutMapping("/list-status/{id}")
+    public ResponseEntity<Property> changeListStatus(@PathVariable long id){
+
+        return ResponseEntity.ok(propertyService.changeListed(id));
+    }
 }
