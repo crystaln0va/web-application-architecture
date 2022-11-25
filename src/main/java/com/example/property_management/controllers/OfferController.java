@@ -14,7 +14,7 @@ public class OfferController {
 
     private final ReviewService reviewService;
 
-    @PostMapping("/create-offer/{prop_id}")
+    @PostMapping("/{prop_id}")
     public Review makeOffer(@PathVariable Long prop_id, @RequestBody Review offer){
         return reviewService.addOffer(prop_id,offer);
     }

@@ -18,9 +18,10 @@ public class ReviewService {
     public Review addOffer(Long prop_id, Review offer){
 
         Property myProp = propertyRepository.findById(prop_id).get();
-        myProp.getReviews().add(offer);
+        Review myOffer = reviewRepository.save(offer);
+        myProp.getReviews().add(myOffer);
         propertyRepository.save(myProp);
-        return offer;
+        return myOffer;
     }
 
 
