@@ -19,6 +19,7 @@ public class Review {
     private String title;
     private String description;
     private long stars;
+    private long user_id;
 
     @ManyToOne
     @JoinColumn(name="key_property")
