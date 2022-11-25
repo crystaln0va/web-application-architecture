@@ -2,6 +2,7 @@ package com.example.property_management.Services;
 
 
 import com.example.property_management.entity.Property;
+import com.example.property_management.entity.Role;
 import com.example.property_management.entity.User;
 import com.example.property_management.entity.dto.UserDto;
 import com.example.property_management.repository.PropertyRepository;
@@ -44,10 +45,9 @@ public class UserService {
         return userRepository.findById(user_id).get().getMylist();
     }
 
-    public List<User> getUserByRole(String role){
+    public List<User> getOwner(){
         return userRepository.findAll().stream()
-                .filter(u->u.getRole().getName()==role)
-                .collect(Collectors.toList());
+                .filter(u->u.getRole().getName()=="OWNER").collect(Collectors.toList());
     }
 
 }
