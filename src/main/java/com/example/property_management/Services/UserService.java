@@ -45,18 +45,10 @@ public class UserService {
         return userRepository.findById(user_id).get().getMylist();
     }
 
-    public List<User> getOwner(){
-        return userRepository.findAll().stream()
-                .filter(u->u.getRole().getName()=="OWNER").collect(Collectors.toList());
+    public List<User> getUserByRole(String role){
+        return userRepository.findUsersByRoleIsContaining(role);
     }
-    public List<User> getCustomer(){
-        return userRepository.findAll().stream()
-                .filter(u->u.getRole().getName()=="CUSTOMER").collect(Collectors.toList());
-    }
-    public List<User> getAdmin(){
-        return userRepository.findAll().stream()
-                .filter(u->u.getRole().getName()=="ADMIN").collect(Collectors.toList());
-    }
+
 
 
 }
