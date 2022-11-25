@@ -21,7 +21,7 @@ public class Property {
     private String description;
     private boolean islisted=true;
     private Status status=Status.ACTIVE;
-    private String image;
+
 
     private int bedrooms;
     private int bathrooms;
@@ -37,6 +37,10 @@ public class Property {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private List<ImageModel> image;
 
     private Long user_id;
 }

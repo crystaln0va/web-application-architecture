@@ -1,7 +1,9 @@
 package com.example.property_management.Services;
 
+import com.example.property_management.entity.ImageModel;
 import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
+import com.example.property_management.repository.ImageModelRepository;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class PropertyService {
     private final PropertyRepository propertyRepository;
     private final UserService userService;
     private final UserRepository userRepository;
+    private final ImageModelRepository imageModelRepository;
 
     public List<Property> getAllProperty(){
         return propertyRepository.findAll();
@@ -28,7 +31,12 @@ public class PropertyService {
 
     public List<Property> addProperty(MultipartFile img,Property prop, Long user_id) throws IOException {
 
-        prop.setImage(Base64.getEncoder().encodeToString(img.getBytes()));
+        ImageModel myImage = ImageModel.builder()
+                .name(img.getOriginalFilename())
+                .type(img.getContentType())
+                .picByte(ImageUtils.compressImage(img.getBytes())).build();
+        imageModelRepository.save(myImage);
+        prop.getImage().add(myImage);
         User user = userService.getUserById(user_id);
         user.getProperties().add(prop);
         prop.setUser_id(user_id);
