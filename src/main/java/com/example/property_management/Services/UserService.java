@@ -48,7 +48,7 @@ public class UserService {
 
     public List<User> getOwner(){
         return userRepository.findAll().stream()
-                .filter(user -> user.getRole().getName()=="OWNER")
+                .filter(user -> user.getRole().getName().startsWith("O"))
                 .collect(Collectors.toList());
 
     }
