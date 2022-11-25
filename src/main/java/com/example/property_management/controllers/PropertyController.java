@@ -27,11 +27,16 @@ public class PropertyController {
     private final PropertyService propertyService;
     private final ModelMapper modelMapper;
 
-    @GetMapping
-    public List<PropertyListDto> getAllProperty(){
-        return propertyService.getAllProperty().stream()
+    @GetMapping("/listed")
+    public List<PropertyListDto> getAllPropertyListed(){
+        return propertyService.getAllPropertyListed().stream()
                 .map(property -> modelMapper.map(property,PropertyListDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping()
+    public List<Property> getALlProperty(){
+        return propertyService.getAllProperty();
     }
 
     @GetMapping("/{id}")

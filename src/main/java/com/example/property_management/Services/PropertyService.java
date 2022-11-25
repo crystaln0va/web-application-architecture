@@ -27,8 +27,12 @@ public class PropertyService {
     private final ImageModelRepository imageModelRepository;
 
     // find all isListed properties
-    public List<Property> getAllProperty(){
+    public List<Property> getAllPropertyListed(){
         return propertyRepository.findAll().stream().filter(p->p.isIslisted()==true).collect(Collectors.toList());
+    }
+
+    public List<Property> getAllProperty(){
+        return propertyRepository.findAll();
     }
 
 
