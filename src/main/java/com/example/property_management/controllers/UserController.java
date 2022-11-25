@@ -49,6 +49,11 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/dto/{id}")
+    public UserDto getBriefUserById(@PathVariable Long id){
+        return modelMapper.map(userService.getUserById(id),UserDto.class);
+    }
+
 
     @GetMapping("/get-user-info")
     public User getByUsername(@RequestParam String email){
