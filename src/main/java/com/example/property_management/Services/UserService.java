@@ -53,6 +53,20 @@ public class UserService {
 
     }
 
+    public List<User> getCustomer(){
+        return userRepository.findAll().stream()
+                .filter(user -> user.getRole().getName().startsWith("C"))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<User> getAdmin(){
+        return userRepository.findAll().stream()
+                .filter(user -> user.getRole().getName().startsWith("A"))
+                .collect(Collectors.toList());
+
+    }
+
 
 
 }
