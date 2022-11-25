@@ -45,10 +45,11 @@ public class UserService {
         return userRepository.findById(user_id).get().getMylist();
     }
 
-    public List<User> getOwner(){
+    public List<User> getUserByRole(String role){
         return userRepository.findAll().stream()
-                .filter(user -> user.getRole().getName()=="OWNER")
+                .filter(user -> user.getRole().getName()==role)
                 .collect(Collectors.toList());
+
     }
 
 

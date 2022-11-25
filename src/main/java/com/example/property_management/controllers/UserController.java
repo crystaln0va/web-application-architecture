@@ -35,10 +35,10 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/owner")
-    public List<UserDto> getUserByRole (){
-        return userService.getOwner().stream()
-                .map(property -> modelMapper.map(property, UserDto.class))
+    @GetMapping("/role/{role}")
+    public List<UserDto> getUserByRole (@PathVariable String role){
+        return userService.getUserByRole(role).stream()
+                .map(user -> modelMapper.map(user, UserDto.class))
                 .collect(Collectors.toList());
     }
 
