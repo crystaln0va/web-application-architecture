@@ -49,5 +49,14 @@ public class UserService {
         return userRepository.findAll().stream()
                 .filter(u->u.getRole().getName()=="OWNER").collect(Collectors.toList());
     }
+    public List<User> getCustomer(){
+        return userRepository.findAll().stream()
+                .filter(u->u.getRole().getName()=="CUSTOMER").collect(Collectors.toList());
+    }
+    public List<User> getAdmin(){
+        return userRepository.findAll().stream()
+                .filter(u->u.getRole().getName()=="ADMIN").collect(Collectors.toList());
+    }
+
 
 }

@@ -35,9 +35,23 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/owner")
-    public List<UserDto> getAllUsersByRole (){
+    @GetMapping("/owners")
+    public List<UserDto> getOwners (){
         return userService.getOwner().stream()
+                .map(property -> modelMapper.map(property, UserDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/customers")
+    public List<UserDto> getCustomers (){
+        return userService.getCustomer().stream()
+                .map(property -> modelMapper.map(property, UserDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/admins")
+    public List<UserDto> getAdmins (){
+        return userService.getAdmin().stream()
                 .map(property -> modelMapper.map(property, UserDto.class))
                 .collect(Collectors.toList());
     }
