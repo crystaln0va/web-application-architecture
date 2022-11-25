@@ -83,4 +83,16 @@ public class UserController {
     public List<Property> getFavorite(@PathVariable Long user_id){
         return userService.getAllfavorite(user_id);
     }
+
+    @PutMapping("/activate/{user_id}")
+    public User activateUser(@PathVariable Long user_id){
+        return userService.activateUser(user_id);
+    }
+
+    @PutMapping("/deactivate/{user_id}")
+    public User deactivateUser(@PathVariable Long user_id){
+        return userService.deactivateUser(user_id);
+    }
+
+
 }

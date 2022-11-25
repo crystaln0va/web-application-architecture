@@ -67,6 +67,22 @@ public class UserService {
 
     }
 
+    public User activateUser(long user_id){
+        User myUser = userRepository.findById(user_id).get();
+        myUser.setIsactive(true);
+        userRepository.save(myUser);
+        return myUser;
+
+    }
+
+    public User deactivateUser(long user_id){
+        User myUser = userRepository.findById(user_id).get();
+        myUser.setIsactive(false);
+        userRepository.save(myUser);
+        return myUser;
+
+    }
+
 
 
 }

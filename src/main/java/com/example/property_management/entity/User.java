@@ -20,7 +20,7 @@ public class User {
     private String lname;
     private String email;
     private String password;
-    private boolean isactive=true;
+    private boolean isactive=false;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_address")
