@@ -3,12 +3,14 @@ package com.example.property_management.Services;
 
 import com.example.property_management.entity.Property;
 import com.example.property_management.entity.User;
+import com.example.property_management.entity.dto.UserDto;
 import com.example.property_management.repository.PropertyRepository;
 import com.example.property_management.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +42,12 @@ public class UserService {
 
     public List<Property> getAllfavorite(Long user_id){
         return userRepository.findById(user_id).get().getMylist();
+    }
+
+    public List<User> getUserByRole(String role){
+        return userRepository.findAll().stream()
+                .filter(u->u.getRole().getName()==role)
+                .collect(Collectors.toList());
     }
 
 }
