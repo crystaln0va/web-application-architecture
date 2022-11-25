@@ -76,7 +76,7 @@ public class PropertyService {
         //, int bedroom , double price,String state
             return propertyRepository.findAll().stream()
 
-                    .filter(p->p.getPtype().toString() ==propType)
+                    .filter(p->p.getPtype().name() ==propType)
 //                    .filter(p->p.getBedrooms()>bedroom)
 //                    .filter(p->p.getPrice()<price)
 //                    .filter(p->p.getAddress().getState().equals(state))
